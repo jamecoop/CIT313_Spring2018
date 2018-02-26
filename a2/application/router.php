@@ -22,7 +22,7 @@ spl_autoload_register('myLoad');
 // require_once 'application/model.class.php';
 // require_once 'application/controller.class.php';
 
-    new Controller();
+    new controller();
 
 ?>
 
