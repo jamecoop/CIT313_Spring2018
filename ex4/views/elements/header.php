@@ -16,7 +16,13 @@
       }
     </style>
     <link href="<?php echo BASE_URL?>views/css/bootstrap-responsive.css" rel="stylesheet">
-
+      <?php
+      if($u->isAdmin()) {
+          ?>
+          <link rel="stylesheet" href="<?php echo BASE_URL?>application/plugins/tinyeditor/tinyeditor.css">
+      <?php
+      }
+      ?>
     <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -45,10 +51,51 @@
             <ul class="nav">
               <li class="active"><a href="<?php echo BASE_URL?>">Home</a></li>
               <li><a href="<?php echo BASE_URL?>blog/">Blog</a></li>
-              <li><a href="<?php echo BASE_URL?>login/">Login</a></li>
               <li><a href="<?php echo BASE_URL?>members/">Members</a></li>
-              <li><a href="<?php echo BASE_URL?>register/">Register</a></li>
             </ul>
+
+              <?php
+              if($u->isRegistered()) {
+              ?>
+                    <ul class="nav pull-right">
+                        <li class="dropdown">
+                            <a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">
+                                <?php echo $u->getUsername();?><b class="caret"></b>
+                        </a>
+                            <ul class="dropdown-menu" role="menu">
+
+                                <?php
+                                if($u->isAdmin()) {
+                                    ?>
+                                    <li>
+                                        <a href="<?php echo BASE_URL?>addpost/">Add Blog Post</a>
+                                    </li>
+                                    <?php
+                                }
+                                ?>
+                                <li>
+                                    <a href="<?php echo BASE_URL?>login/logout/">Logout</a>
+                                </li>
+                            </ul>
+
+                        </li>
+
+
+                    </ul>
+              <?php
+              }
+              else {
+              ?>
+                  <ul class="nav pull-right">
+                  <li><a href="<?php echo BASE_URL?>login/">Login</a></li>
+                  <li><a href="<?php echo BASE_URL?>register/">Register</a></li>
+                  </ul>
+              <?
+              }
+              ?>
+
+
+
           </div><!--/.nav-collapse -->
         </div>
       </div>

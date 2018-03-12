@@ -6,8 +6,15 @@ include('elements/header.php')
 <div class="container">
 	<div class="page-header">
    <h1>Login</h1>
-   
-   <?php echo $numbers; ?>
+
+        <?php if(isset($error)) { ?>
+            <div class="alert alert-danger">
+                <?php echo $error;?>
+            </div>
+
+            <?php
+        }
+        ?>
    
    <?php include('elements/login_form.php');?>
    
